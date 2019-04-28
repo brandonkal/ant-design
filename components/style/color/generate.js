@@ -1,5 +1,6 @@
 import { generate } from '@ant-design/colors';
 
-export default function ColorPatterns({ color }) {
-  return generate(color);
+export default function ColorPatterns(color, index) {
+  index--;
+  return generate(color)[index];
 }

@@ -1,608 +1,609 @@
-/* stylelint-disable at-rule-empty-line-before,at-rule-name-space-after,at-rule-no-unknown */
-const import '../color/colors';
+/* stylelintDisable atRuleEmptyLineBefore,atRuleNameSpaceAfter,atRuleNoUnknown */
+// const import '../color/colors';
+import { opacify, math, tint } from 'polished';
+import colorPalette from '../color/generate';
 
 // The prefix to use on all css classes from ant.
-const antPrefix = ant;
+const antPrefix = 'ant';
 
 // An override for the html selector for theme prefixes
-const htmlSelector = html;
+const htmlSelector = 'html';
 
 // -------- Colors -----------
-const primaryColor = @blue-6;
-const infoColor = @blue-6;
-const successColor = @green-6;
-const processingColor = @blue-6;
-const errorColor = @red-6;
-const highlightColor = @red-6;
-const warningColor = @gold-6;
-const normalColor = #d9d9d9;
-const white = #fff;
-const black = #000;
+const primaryColor = blue6;
+const infoColor = blue6;
+const successColor = green6;
+const processingColor = blue6;
+const errorColor = red6;
+const highlightColor = red6;
+const warningColor = gold6;
+const normalColor = '#d9d9d9';
+const white = '#fff';
+const black = '#000';
 
 // Color used by default to control hover and active backgrounds and for
 // alert info backgrounds.
-const primary1 = color(~`colorPalette('@{primaryColor}', 1) `); // replace tint(@primaryColor, 90%)
-const primary2 = color(~`colorPalette('@{primaryColor}', 2) `); // replace tint(@primaryColor, 80%)
-const primary3 = color(~`colorPalette('@{primaryColor}', 3) `); // unused
-const primary4 = color(~`colorPalette('@{primaryColor}', 4) `); // unused
-const primary5 = color(
-  ~`colorPalette('@{primaryColor}', 5) `
-); // color used to control the text color in many active and hover states, replace tint(@primaryColor, 20%)
-const primary6 = @primaryColor; // color used to control the text color of active buttons, don't use, use @primaryColor
-const primary7 = color(~`colorPalette('@{primaryColor}', 7) `); // replace shade(@primaryColor, 5%)
-const primary8 = color(~`colorPalette('@{primaryColor}', 8) `); // unused
-const primary9 = color(~`colorPalette('@{primaryColor}', 9) `); // unused
-const primary10 = color(~`colorPalette('@{primaryColor}', 10) `); // unused
+const primary1 = colorPalette(primaryColor, 1); // replace tint(@primaryColor, 90%)
+const primary2 = colorPalette(primaryColor, 2); // replace tint(@primaryColor, 80%)
+const primary3 = colorPalette(primaryColor, 3); // unused
+const primary4 = colorPalette(primaryColor, 4); // unused
+const primary5 = colorPalette(primaryColor, 5); // color used to control the text color in many active and hover states, replace tint(@primaryColor, 20%)
+const primary6 = primaryColor; // color used to control the text color of active buttons, don't use, use @primaryColor
+const primary7 = colorPalette(primaryColor, 7); // replace shade(@primaryColor, 5%)
+const primary8 = colorPalette(primaryColor, 8); // unused
+const primary9 = colorPalette(primaryColor, 9); // unused
+const primary10 = colorPalette(primaryColor, 10); // unused
 
 // Base Scaffolding Variables
 // ---
 
 // Background color for `<body>`
-const body-background = #fff;
+const bodyBackground = '#fff';
 // Base background color for most components
-const component-background = #fff;
-const font-family = -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB',
-  'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif, 'Apple Color Emoji',
-  'Segoe UI Emoji', 'Segoe UI Symbol';
-const code-family = 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
-const textColor = fade(@black, 65%);
-const textColor-secondary = fade(@black, 45%);
-const textColor-warning = @gold-7;
-const textColor-danger = @red-7;
-const textColor-inverse = @white;
-const iconColor = inherit;
-const iconColor-hover = fade(@black, 75%);
-const headingColor = fade(#000, 85%);
-const headingColor-dark = fade(@white, 100%);
-const textColor-dark = fade(@white, 85%);
-const textColor-secondary-dark = fade(@white, 65%);
-const text-selection-bg = @primaryColor;
-const font-variant-base = tabular-nums;
-const font-feature-settings-base = 'tnum';
-const font-size-base = 14px;
-const font-size-lg = @font-size-base + 2px;
-const font-size-sm = 12px;
-const heading-1-size = ceil(@font-size-base * 2.71);
-const heading-2-size = ceil(@font-size-base * 2.14);
-const heading-3-size = ceil(@font-size-base * 1.71);
-const heading-4-size = ceil(@font-size-base * 1.42);
-const line-height-base = 1.5;
-const border-radius-base = 4px;
-const border-radius-sm = 2px;
+const componentBackground = '#fff';
+const fontFamily = `-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB',
+  'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sansSerif, 'Apple Color Emoji',
+  'Segoe UI Emoji', 'Segoe UI Symbol'`;
+const codeFamily = `'SFMonoRegular', Consolas, 'Liberation Mono', Menlo, Courier, monospace'`;
+const textColor = opacify(0.65, black);
+const textColorSecondary = opacify(0.45, black);
+const textColorWarning = gold7;
+const textColorDanger = red7;
+const textColorInverse = white;
+const iconColor = 'inherit';
+const iconColorHover = opacify(0.75, black);
+const headingColor = opacify(0.85, '#000');
+const headingColorDark = opacify(100, white);
+const textColorDark = opacify(0.85, white);
+const textColorSecondaryDark = opacify(0.65, white);
+const textSelectionBg = primaryColor;
+const fontVariantBase = 'tabularNums';
+const fontFeatureSettingsBase = tnum;
+const fontSizeBase = '14px';
+const fontSizeLg = math(`${fontSizeBase} 2px`); // 14 + 2 px
+const fontSizeSm = '12px';
+// fix ceil which has strings
+const heading1Size = `${Math.ceil(fontSizeBase.replace('px', '') * 2.71)  }px`;
+const heading2Size = `${Math.ceil(fontSizeBase.replace('px', '') * 2.14)  }px`;
+const heading3Size = `${Math.ceil(fontSizeBase.replace('px', '') * 1.71)  }px`;
+const heading4Size = `${Math.ceil(fontSizeBase.replace('px', '') * 1.42)  }px`;
+const lineHeightBase = '1.5';
+const borderRadiusBase = '4px';
+const borderRadiusSm = '2px';
 
 // vertical paddings
-const padding-lg = 24px; // containers
-const padding-md = 16px; // small containers and buttons
-const padding-sm = 12px; // Form controls and items
-const padding-xs = 8px; // small items
+const paddingLg = '24px'; // containers
+const paddingMd = '16px'; // small containers and buttons
+const paddingSm = '12px'; // Form controls and items
+const paddingXs = '8px'; // small items
 
 // vertical padding for all form controls
-const control-padding-horizontal = @padding-sm;
-const control-padding-horizontal-sm = @padding-xs;
+const controlPaddingHorizontal = paddingSm;
+const controlPaddingHorizontalSm = paddingXs;
 
 // The background colors for active and hover states for things like
 // list items or table cells.
-const item-active-bg = @primary-1;
-const item-hover-bg = @primary-1;
+const itemActiveBg = primary1;
+const itemHoverBg = primary1;
 
 // ICONFONT
-const iconfontCss-prefix = anticon;
+const iconfontCssPrefix = 'anticon';
 
 // LINK
-const linkColor = @primaryColor;
-const link-hoverColor = color(~`colorPalette('@{linkColor}', 5) `);
-const link-activeColor = color(~`colorPalette('@{linkColor}', 7) `);
-const link-decoration = none;
-const link-hover-decoration = none;
+const linkColor = primaryColor;
+const linkHoverColor = colorPalette(linkColor, 5);
+const linkActiveColor = colorPalette(linkColor, 7);
+const linkDecoration = 'none';
+const linkHoverDecoration = 'none';
 
 // Animation
-const ease-base-out = cubic-bezier(0.7, 0.3, 0.1, 1);
-const ease-base-in = cubic-bezier(0.9, 0, 0.3, 0.7);
-const ease-out = cubic-bezier(0.215, 0.61, 0.355, 1);
-const ease-in = cubic-bezier(0.55, 0.055, 0.675, 0.19);
-const ease-in-out = cubic-bezier(0.645, 0.045, 0.355, 1);
-const ease-out-back = cubic-bezier(0.12, 0.4, 0.29, 1.46);
-const ease-in-back = cubic-bezier(0.71, -0.46, 0.88, 0.6);
-const ease-in-out-back = cubic-bezier(0.71, -0.46, 0.29, 1.46);
-const ease-outCirc = cubic-bezier(0.08, 0.82, 0.17, 1);
-const ease-inCirc = cubic-bezier(0.6, 0.04, 0.98, 0.34);
-const ease-in-outCirc = cubic-bezier(0.78, 0.14, 0.15, 0.86);
-const ease-out-quint = cubic-bezier(0.23, 1, 0.32, 1);
-const ease-in-quint = cubic-bezier(0.755, 0.05, 0.855, 0.06);
-const ease-in-out-quint = cubic-bezier(0.86, 0, 0.07, 1);
+const easeBaseOut = 'cubic-bezier(0.7, 0.3, 0.1, 1)';
+const easeBaseIn = 'cubic-bezier(0.9, 0, 0.3, 0.7)';
+const easeOut = 'cubic-bezier(0.215, 0.61, 0.355, 1)';
+const easeIn = 'cubic-bezier(0.55, 0.055, 0.675, 0.19)';
+const easeInOut = 'cubic-bezier(0.645, 0.045, 0.355, 1)';
+const easeOutBack = 'cubic-bezier(0.12, 0.4, 0.29, 1.46)';
+const easeInBack = 'cubic-bezier(0.71, -0.46, 0.88, 0.6)';
+const easeInOutBack = 'cubic-bezier(0.71, -0.46, 0.29, 1.46)';
+const easeOutCirc = 'cubic-bezier(0.08, 0.82, 0.17, 1)';
+const easeInCirc = 'cubic-bezier(0.6, 0.04, 0.98, 0.34)';
+const easeInOutCirc = 'cubic-bezier(0.78, 0.14, 0.15, 0.86)';
+const easeOutQuint = 'cubic-bezier(0.23, 1, 0.32, 1)';
+const easeInQuint = 'cubic-bezier(0.755, 0.05, 0.855, 0.06)';
+const easeInOutQuint = 'cubic-bezier(0.86, 0, 0.07, 1)';
 
 // Border color
-const borderColor-base = hsv(0, 0, 85%); // base border outline a component
-const borderColor-split = hsv(0, 0, 91%); // split border inside a component
-const borderColor-inverse = @white;
-const border-width-base = 1px; // width of the border for a component
-const border-style-base = solid; // style of a components border
+const borderColorBase = '#D9D9D9'; // base border outline a component
+const borderColorSplit = '#E8E8E8'; // split border inside a component
+const borderColorInverse = white;
+const borderWidthBase = '1px'; // width of the border for a component
+const borderStyleBase = 'solid'; // style of a components border
 
 // Outline
-const outline-blur-size = 0;
-const outline-width = 2px;
-const outlineColor = @primaryColor;
+const outlineBlurSize = '0';
+const outlineWidth = '2px';
+const outlineColor = primaryColor;
 
-const backgroundColor-light = hsv(0, 0, 98%); // background of header and selected item
-const backgroundColor-base = hsv(0, 0, 96%); // Default grey background color
+const backgroundColorLight = '#FAFAFA'; // background of header and selected item
+const backgroundColorBase = '#F5F5F5'; // Default grey background color
 
 // Disabled states
-const disabledColor = fade(#000, 25%);
-const disabled-bg = @backgroundColor-base;
-const disabledColor-dark = fade(#fff, 35%);
+const disabledColor = opacify(0.25, '#000');
+const disabledBg = backgroundColorBase;
+const disabledColorDark = opacify(0.35, '#fff');
 
 // Shadow
-const shadowColor = rgba(0, 0, 0, 0.15);
-const shadowColor-inverse = @component-background;
-const box-shadow-base = @shadow-1-down;
-const shadow-1-up = 0 -2px 8px @shadowColor;
-const shadow-1-down = 0 2px 8px @shadowColor;
-const shadow-1-left = -2px 0 8px @shadowColor;
-const shadow-1-right = 2px 0 8px @shadowColor;
-const shadow-2 = 0 4px 12px @shadowColor;
+const shadowColor = 'rgba(0, 0, 0, 0.15)';
+const shadowColorInverse = componentBackground;
+const boxShadowBase = shadow1Down;
+const shadow1Up = '0 -2px 8px @shadowColor';
+const shadow1Down = '0 2px 8px @shadowColor';
+const shadow1Left = '-2px 0 8px @shadowColor';
+const shadow1Right = '2px 0 8px @shadowColor';
+const shadow2 = '0 4px 12px @shadowColor';
 
 // Buttons
-const btn-font-weight = 400;
-const btn-border-radius-base = @border-radius-base;
-const btn-border-radius-sm = @border-radius-base;
-const btn-border-width = @border-width-base;
-const btn-border-style = @border-style-base;
-const btn-shadow = 0 2px 0 rgba(0, 0, 0, 0.015);
-const btn-primary-shadow = 0 2px 0 rgba(0, 0, 0, 0.045);
-const btn-text-shadow = 0 -1px 0 rgba(0, 0, 0, 0.12);
+const btnFontWeight = '400';
+const btnBorderRadiusBase = borderRadiusBase;
+const btnBorderRadiusSm = borderRadiusBase;
+const btnBorderWidth = borderWidthBase;
+const btnBorderStyle = borderStyleBase;
+const btnShadow = '0 2px 0 rgba(0, 0, 0, 0.015)';
+const btnPrimaryShadow = '0 2px 0 rgba(0, 0, 0, 0.045)';
+const btnTextShadow = '0 -1px 0 rgba(0, 0, 0, 0.12)';
 
-const btn-primaryColor = #fff;
-const btn-primary-bg = @primaryColor;
+const btnPrimaryColor = '#fff';
+const btnPrimaryBg = primaryColor;
 
-const btn-defaultColor = @textColor;
-const btn-default-bg = #fff;
-const btn-default-border = @borderColor-base;
+const btnDefaultColor = textColor;
+const btnDefaultBg = '#fff';
+const btnDefaultBorder = borderColorBase;
 
-const btn-dangerColor = @errorColor;
-const btn-danger-bg = @backgroundColor-base;
-const btn-danger-border = @borderColor-base;
+const btnDangerColor = errorColor;
+const btnDangerBg = backgroundColorBase;
+const btnDangerBorder = borderColorBase;
 
-const btn-disableColor = @disabledColor;
-const btn-disable-bg = @disabled-bg;
-const btn-disable-border = @borderColor-base;
+const btnDisableColor = disabledColor;
+const btnDisableBg = disabledBg;
+const btnDisableBorder = borderColorBase;
 
-const btn-padding-base = 0 @padding-md - 1px;
-const btn-font-size-lg = @font-size-lg;
-const btn-font-size-sm = @font-size-base;
-const btn-padding-lg = @btn-padding-base;
-const btn-padding-sm = 0 @padding-xs - 1px;
+const btnPaddingBase = `0 ${paddingMd} - 1px`;
+const btnFontSizeLg = fontSizeLg;
+const btnFontSizeSm = fontSizeBase;
+const btnPaddingLg = btnPaddingBase;
+const btnPaddingSm = '0 @paddingXs - 1px';
 
-const btn-height-base = 32px;
-const btn-height-lg = 40px;
-const btn-height-sm = 24px;
+const btnHeightBase = '32px';
+const btnHeightLg = '40px';
+const btnHeightSm = '24px';
 
-const btnCircle-size = @btn-height-base;
-const btnCircle-size-lg = @btn-height-lg;
-const btnCircle-size-sm = @btn-height-sm;
+const btnCircleSize = btnHeightBase;
+const btnCircleSizeLg = btnHeightLg;
+const btnCircleSizeSm = btnHeightSm;
 
-const btn-group-border = @primary-5;
+const btnGroupBorder = primary5;
 
 // Checkbox
-const checkbox-size = 16px;
-const checkboxColor = @primaryColor;
-const checkboxCheckColor = #fff;
-const checkbox-border-width = @border-width-base;
+const checkboxSize = '16px';
+const checkboxColor = primaryColor;
+const checkboxCheckColor = '#fff';
+const checkboxBorderWidth = borderWidthBase;
 
 // Empty
-const empty-font-size = @font-size-base;
+const emptyFontSize = fontSizeBase;
 
 // Radio
-const radio-size = 16px;
-const radio-dotColor = @primaryColor;
+const radioSize = '16px';
+const radioDotColor = primaryColor;
 
 // Radio buttons
-const radio-button-bg = @btn-default-bg;
-const radio-buttonChecked-bg = @btn-default-bg;
-const radio-buttonColor = @btn-defaultColor;
-const radio-button-hoverColor = @primary-5;
-const radio-button-activeColor = @primary-7;
+const radioButtonBg = btnDefaultBg;
+const radioButtonCheckedBg = btnDefaultBg;
+const radioButtonColor = btnDefaultColor;
+const radioButtonHoverColor = primary5;
+const radioButtonActiveColor = primary7;
 
 // Media queries breakpoints
 // Extra small screen / phone
-const screen-xs = 480px;
-const screen-xs-min = @screen-xs;
+const screenXs = '480px';
+const screenXsMin = screenXs;
 
 // Small screen / tablet
-const screen-sm = 576px;
-const screen-sm-min = @screen-sm;
+const screenSm = '576px';
+const screenSmMin = screenSm;
 
 // Medium screen / desktop
-const screen-md = 768px;
-const screen-md-min = @screen-md;
+const screenMd = '768px';
+const screenMdMin = screenMd;
 
 // Large screen / wide desktop
-const screen-lg = 992px;
-const screen-lg-min = @screen-lg;
+const screenLg = '992px';
+const screenLgMin = screenLg;
 
 // Extra large screen / full hd
-const screen-xl = 1200px;
-const screen-xl-min = @screen-xl;
+const screenXl = '1200px';
+const screenXlMin = screenXl;
 
 // Extra extra large screen / large desktop
-const screen-xxl = 1600px;
-const screen-xxl-min = @screen-xxl;
+const screenXxl = '1600px';
+const screenXxlMin = screenXxl;
 
 // provide a maximum
-const screen-xs-max = (@screen-sm-min - 1px);
-const screen-sm-max = (@screen-md-min - 1px);
-const screen-md-max = (@screen-lg-min - 1px);
-const screen-lg-max = (@screen-xl-min - 1px);
-const screen-xl-max = (@screen-xxl-min - 1px);
+const screenXsMax = math(`${screenSmMin} - 1px`);
+const screenSmMax = math(`${screenMdMin} - 1px`);
+const screenMdMax = math(`${screenLgMin} - 1px`);
+const screenLgMax = math(`${screenXlMin} - 1px`);
+const screenXlMax = math(`${screenXxlMin} - 1px`);
 
 // Grid system
-const gridColumns = 24;
-const grid-gutter-width = 0;
+const gridColumns = '24';
+const gridGutterWidth = '0';
 
 // Layout
-const layout-body-background = #f0f2f5;
-const layout-header-background = #001529;
-const layout-footer-background = @layout-body-background;
-const layout-header-height = 64px;
-const layout-header-padding = 0 50px;
-const layout-footer-padding = 24px 50px;
-const layout-sider-background = @layout-header-background;
-const layout-trigger-height = 48px;
-const layout-trigger-background = #002140;
-const layout-triggerColor = #fff;
-const layout-zero-trigger-width = 36px;
-const layout-zero-trigger-height = 42px;
+const layoutBodyBackground = '#f0f2f5';
+const layoutHeaderBackground = '#001529';
+const layoutFooterBackground = layoutBodyBackground;
+const layoutHeaderHeight = '64px';
+const layoutHeaderPadding = '0 50px';
+const layoutFooterPadding = '24px 50px';
+const layoutSiderBackground = layoutHeaderBackground;
+const layoutTriggerHeight = '48px';
+const layoutTriggerBackground = '#002140';
+const layoutTriggerColor = '#fff';
+const layoutZeroTriggerWidth = '36px';
+const layoutZeroTriggerHeight = '42px';
 // Layout light theme
-const layout-sider-background-light = #fff;
-const layout-trigger-background-light = #fff;
-const layout-triggerColor-light = @textColor;
+const layoutSiderBackgroundLight = '#fff';
+const layoutTriggerBackgroundLight = '#fff';
+const layoutTriggerColorLight = textColor;
 
-// z-index list, order by `z-index`
-const zindex-table-fixed = auto;
-const zindex-affix = 10;
-const zindex-back-top = 10;
-const zindex-badge = 10;
-const zindex-picker-panel = 10;
-const zindex-popupClose = 10;
-const zindex-modal = 1000;
-const zindex-modal-mask = 1000;
-const zindex-message = 1010;
-const zindex-notification = 1010;
-const zindex-popover = 1030;
-const zindex-dropdown = 1050;
-const zindex-picker = 1050;
-const zindex-tooltip = 1060;
+// zIndex list, order by `zIndex`
+const zindexTableFixed = 'auto';
+const zindexAffix = '10';
+const zindexBackTop = '10';
+const zindexBadge = '10';
+const zindexPickerPanel = '10';
+const zindexPopupClose = '10';
+const zindexModal = '1000';
+const zindexModalMask = '1000';
+const zindexMessage = '1010';
+const zindexNotification = '1010';
+const zindexPopover = '1030';
+const zindexDropdown = '1050';
+const zindexPicker = '1050';
+const zindexTooltip = '1060';
 
 // Animation
-const animation-duration-slow = 0.3s; // Modal
-const animation-duration-base = 0.2s;
-const animation-duration-fast = 0.1s; // Tooltip
+const animationDurationSlow = '0.3s'; // Modal
+const animationDurationBase = '0.2s';
+const animationDurationFast = '0.1s'; // Tooltip
 
 // Form
 // ---
-const label-requiredColor = @highlightColor;
-const labelColor = @headingColor;
-const form-item-margin-bottom = 24px;
-const form-item-trailingColon = true;
-const form-vertical-label-padding = 0 0 8px;
-const form-vertical-label-margin = 0;
+const labelRequiredColor = highlightColor;
+const labelColor = headingColor;
+const formItemMarginBottom = '24px';
+const formItemTrailingColon = 'true';
+const formVerticalLabelPadding = '0 0 8px';
+const formVerticalLabelMargin = '0';
 
 // Input
 // ---
-const input-height-base = 32px;
-const input-height-lg = 40px;
-const input-height-sm = 24px;
-const input-padding-horizontal = @control-padding-horizontal - 1px;
-const input-padding-horizontal-base = @input-padding-horizontal;
-const input-padding-horizontal-sm = @control-padding-horizontal-sm - 1px;
-const input-padding-horizontal-lg = @input-padding-horizontal;
-const input-padding-vertical-base = 4px;
-const input-padding-vertical-sm = 1px;
-const input-padding-vertical-lg = 6px;
-const input-placeholderColor = hsv(0, 0, 75%);
-const inputColor = @textColor;
-const input-borderColor = @borderColor-base;
-const input-bg = #fff;
-const input-number-handler-active-bg = #f4f4f4;
-const input-addon-bg = @backgroundColor-light;
-const input-hover-borderColor = @primaryColor;
-const input-disabled-bg = @disabled-bg;
-const input-outline-offset = 0 0;
+const inputHeightBase = '32px';
+const inputHeightLg = '40px';
+const inputHeightSm = '24px';
+const inputPaddingHorizontal = math(`${controlPaddingHorizontal} - 1px`);
+const inputPaddingHorizontalBase = inputPaddingHorizontal;
+const inputPaddingHorizontalSm = math(`${controlPaddingHorizontalSm} - 1px`);
+const inputPaddingHorizontalLg = inputPaddingHorizontal;
+const inputPaddingVerticalBase = '4px';
+const inputPaddingVerticalSm = '1px';
+const inputPaddingVerticalLg = '6px';
+const inputPlaceholderColor = '#BFBFBF';
+const inputColor = textColor;
+const inputBorderColor = borderColorBase;
+const inputBg = '#fff';
+const inputNumberHandlerActiveBg = '#f4f4f4';
+const inputAddonBg = backgroundColorLight;
+const inputHoverBorderColor = primaryColor;
+const inputDisabledBg = disabledBg;
+const inputOutlineOffset = '0 0';
 
 // Select
 // ---
-const select-borderColor = @borderColor-base;
-const select-item-selected-font-weight = 600;
+const selectBorderColor = borderColorBase;
+const selectItemSelectedFontWeight = '600';
 
 // Tooltip
 // ---
 // Tooltip max width
-const tooltip-max-width = 250px;
+const tooltipMaxWidth = '250px';
 // Tooltip text color
-const tooltipColor = #fff;
+const tooltipColor = '#fff';
 // Tooltip background color
-const tooltip-bg = rgba(0, 0, 0, 0.75);
+const tooltipBg = 'rgba(0, 0, 0, 0.75)';
 // Tooltip arrow width
-const tooltip-arrow-width = 5px;
+const tooltipArrowWidth = '5px';
 // Tooltip distance with trigger
-const tooltip-distance = @tooltip-arrow-width - 1px + 4px;
+const tooltipDistance = math(`${tooltipArrowWidth} + 3px`);
 // Tooltip arrow color
-const tooltip-arrowColor = @tooltip-bg;
+const tooltipArrowColor = tooltipBg;
 
 // Popover
 // ---
 // Popover body background color
-const popover-bg = #fff;
+const popoverBg = '#fff';
 // Popover text color
-const popoverColor = @textColor;
+const popoverColor = textColor;
 // Popover maximum width
-const popover-min-width = 177px;
+const popoverMinWidth = '177px';
 // Popover arrow width
-const popover-arrow-width = 6px;
+const popoverArrowWidth = '6px';
 // Popover arrow color
-const popover-arrowColor = @popover-bg;
+const popoverArrowColor = popoverBg;
 // Popover outer arrow width
 // Popover outer arrow color
-const popover-arrow-outerColor = @popover-bg;
+const popoverArrowOuterColor = popoverBg;
 // Popover distance with trigger
-const popover-distance = @popover-arrow-width + 4px;
+const popoverDistance = `calc(${popoverArrowWidth} + 4px)`;
 
 // Modal
 // --
-const modal-body-padding = 24px;
-const modal-header-bg = @component-background;
-const modal-footer-bg = transparent;
-const modal-mask-bg = fade(@black, 65%);
+const modalBodyPadding = '24px';
+const modalHeaderBg = componentBackground;
+const modalFooterBg = 'transparent';
+const modalMaskBg = opacify(0.65, black);
 
 // Progress
 // --
-const progress-defaultColor = @processingColor;
-const progress-remainingColor = @backgroundColor-base;
-const progress-textColor = @textColor;
+const progressDefaultColor = processingColor;
+const progressRemainingColor = backgroundColorBase;
+const progressTextColor = textColor;
 
 // Menu
 // ---
-const menu-inline-toplevel-item-height = 40px;
-const menu-item-height = 40px;
-const menuCollapsed-width = 80px;
-const menu-bg = @component-background;
-const menu-popup-bg = @component-background;
-const menu-itemColor = @textColor;
-const menu-highlightColor = @primaryColor;
-const menu-item-active-bg = @item-active-bg;
-const menu-item-active-border-width = 3px;
-const menu-item-group-titleColor = @textColor-secondary;
+const menuInlineToplevelItemHeight = '40px';
+const menuItemHeight = '40px';
+const menuCollapsedWidth = '80px';
+const menuBg = componentBackground;
+const menuPopupBg = componentBackground;
+const menuItemColor = textColor;
+const menuHighlightColor = primaryColor;
+const menuItemActiveBg = itemActiveBg;
+const menuItemActiveBorderWidth = '3px';
+const menuItemGroupTitleColor = textColorSecondary;
 // dark theme
-const menu-darkColor = @textColor-secondary-dark;
-const menu-dark-bg = @layout-header-background;
-const menu-dark-arrowColor = #fff;
-const menu-dark-submenu-bg = #000c17;
-const menu-dark-highlightColor = #fff;
-const menu-dark-item-active-bg = @primaryColor;
+const menuDarkColor = textColorSecondaryDark;
+const menuDarkBg = layoutHeaderBackground;
+const menuDarkArrowColor = '#fff';
+const menuDarkSubmenuBg = '#000c17';
+const menuDarkHighlightColor = '#fff';
+const menuDarkItemActiveBg = primaryColor;
 
 // Spin
 // ---
-const spin-dot-size-sm = 14px;
-const spin-dot-size = 20px;
-const spin-dot-size-lg = 32px;
+const spinDotSizeSm = '14px';
+const spinDotSize = '20px';
+const spinDotSizeLg = '32px';
 
 // Table
 // --
-const table-header-bg = @backgroundColor-light;
-const table-headerColor = @headingColor;
-const table-header-sort-bg = @backgroundColor-base;
-const table-body-sort-bg = rgba(0, 0, 0, 0.01);
-const table-row-hover-bg = @primary-1;
-const table-selected-row-bg = #fafafa;
-const table-expanded-row-bg = #fbfbfb;
-const table-padding-vertical = 16px;
-const table-padding-horizontal = 16px;
-const table-border-radius-base = @border-radius-base;
+const tableHeaderBg = backgroundColorLight;
+const tableHeaderColor = headingColor;
+const tableHeaderSortBg = backgroundColorBase;
+const tableBodySortBg = 'rgba(0, 0, 0, 0.01)';
+const tableRowHoverBg = primary1;
+const tableSelectedRowBg = '#fafafa';
+const tableExpandedRowBg = '#fbfbfb';
+const tablePaddingVertical = '16px';
+const tablePaddingHorizontal = '16px';
+const tableBorderRadiusBase = borderRadiusBase;
 
 // Tag
 // --
-const tag-default-bg = @backgroundColor-light;
-const tag-defaultColor = @textColor;
-const tag-font-size = @font-size-sm;
+const tagDefaultBg = backgroundColorLight;
+const tagDefaultColor = textColor;
+const tagFontSize = fontSizeSm;
 
 // TimePicker
 // ---
-const time-picker-panelColumn-width = 56px;
-const time-picker-panel-width = @time-picker-panelColumn-width * 3;
-const time-picker-selected-bg = @backgroundColor-base;
+const timePickerPanelColumnWidth = '56px';
+const timePickerPanelWidth = math(`${timePickerPanelColumnWidth} * 3`);
+const timePickerSelectedBg = backgroundColorBase;
 
 // Carousel
 // ---
-const carousel-dot-width = 16px;
-const carousel-dot-height = 3px;
-const carousel-dot-active-width = 24px;
+const carouselDotWidth = '16px';
+const carouselDotHeight = '3px';
+const carouselDotActiveWidth = '24px';
 
 // Badge
 // ---
-const badge-height = 20px;
-const badge-dot-size = 6px;
-const badge-font-size = @font-size-sm;
-const badge-font-weight = normal;
-const badge-status-size = 6px;
-const badge-textColor = @component-background;
+const badgeHeight = '20px';
+const badgeDotSize = '6px';
+const badgeFontSize = fontSizeSm;
+const badgeFontWeight = 'normal';
+const badgeStatusSize = '6px';
+const badgeTextColor = componentBackground;
 
 // Rate
 // ---
-const rate-starColor = @yellow-6;
-const rate-star-bg = @borderColor-split;
+const rateStarColor = yellow6;
+const rateStarBg = borderColorSplit;
 
 // Card
 // ---
-const card-headColor = @headingColor;
-const card-head-background = transparent;
-const card-head-padding = 16px;
-const card-inner-head-padding = 12px;
-const card-padding-base = 24px;
-const card-actions-background = @backgroundColor-light;
-const card-background = #cfd8dc;
-const card-shadow = 0 2px 8px rgba(0, 0, 0, 0.09);
-const card-radius = @border-radius-sm;
+const cardHeadColor = headingColor;
+const cardHeadBackground = 'transparent';
+const cardHeadPadding = '16px';
+const cardInnerHeadPadding = '12px';
+const cardPaddingBase = '24px';
+const cardActionsBackground = backgroundColorLight;
+const cardBackground = '#cfd8dc';
+const cardShadow = '0 2px 8px rgba(0, 0, 0, 0.09)';
+const cardRadius = borderRadiusSm;
 
 // Comment
 // ---
-const comment-padding-base = 16px 0;
-const comment-nest-indent = 44px;
-const comment-author-nameColor = @textColor-secondary;
-const comment-author-timeColor = #ccc;
-const comment-actionColor = @textColor-secondary;
-const comment-action-hoverColor = #595959;
+const commentPaddingBase = '16px 0';
+const commentNestIndent = '44px';
+const commentAuthorNameColor = textColorSecondary;
+const commentAuthorTimeColor = '#ccc';
+const commentActionColor = textColorSecondary;
+const commentActionHoverColor = '#595959';
 
 // Tabs
 // ---
-const tabsCard-head-background = @backgroundColor-light;
-const tabsCard-height = 40px;
-const tabsCard-activeColor = @primaryColor;
-const tabs-title-font-size = @font-size-base;
-const tabs-title-font-size-lg = @font-size-lg;
-const tabs-title-font-size-sm = @font-size-base;
-const tabs-ink-barColor = @primaryColor;
-const tabs-bar-margin = 0 0 16px 0;
-const tabs-horizontal-margin = 0 32px 0 0;
-const tabs-horizontal-padding = 12px 16px;
-const tabs-horizontal-padding-lg = 16px;
-const tabs-horizontal-padding-sm = 8px 16px;
-const tabs-vertical-padding = 8px 24px;
-const tabs-vertical-margin = 0 0 16px 0;
-const tabs-scrolling-size = 32px;
-const tabs-highlightColor = @primaryColor;
-const tabs-hoverColor = @primary-5;
-const tabs-activeColor = @primary-7;
+const tabsCardHeadBackground = backgroundColorLight;
+const tabsCardHeight = '40px';
+const tabsCardActiveColor = primaryColor;
+const tabsTitleFontSize = fontSizeBase;
+const tabsTitleFontSizeLg = fontSizeLg;
+const tabsTitleFontSizeSm = fontSizeBase;
+const tabsInkBarColor = primaryColor;
+const tabsBarMargin = '0 0 16px 0';
+const tabsHorizontalMargin = '0 32px 0 0';
+const tabsHorizontalPadding = '12px 16px';
+const tabsHorizontalPaddingLg = '16px';
+const tabsHorizontalPaddingSm = '8px 16px';
+const tabsVerticalPadding = '8px 24px';
+const tabsVerticalMargin = '0 0 16px 0';
+const tabsScrollingSize = '32px';
+const tabsHighlightColor = primaryColor;
+const tabsHoverColor = primary5;
+const tabsActiveColor = primary7;
 
 // BackTop
 // ---
-const back-topColor = #fff;
-const back-top-bg = @textColor-secondary;
-const back-top-hover-bg = @textColor;
+const backTopColor = '#fff';
+const backTopBg = textColorSecondary;
+const backTopHoverBg = textColor;
 
 // Avatar
 // ---
-const avatar-size-base = 32px;
-const avatar-size-lg = 40px;
-const avatar-size-sm = 24px;
-const avatar-font-size-base = 18px;
-const avatar-font-size-lg = 24px;
-const avatar-font-size-sm = 14px;
-const avatar-bg = #ccc;
-const avatarColor = #fff;
-const avatar-border-radius = @border-radius-base;
+const avatarSizeBase = '32px';
+const avatarSizeLg = '40px';
+const avatarSizeSm = '24px';
+const avatarFontSizeBase = '18px';
+const avatarFontSizeLg = '24px';
+const avatarFontSizeSm = '14px';
+const avatarBg = '#ccc';
+const avatarColor = '#fff';
+const avatarBorderRadius = borderRadiusBase;
 
 // Switch
 // ---
-const switch-height = 22px;
-const switch-sm-height = 16px;
-const switch-smChecked-margin-left = -(@switch-sm-height - 3px);
-const switch-disabled-opacity = 0.4;
-const switchColor = @primaryColor;
-const switch-shadowColor = fade(#00230b, 20%);
+const switchHeight = '22px';
+const switchSmHeight = '16px';
+const switchSmCheckedMarginLeft = `-${math(`${switchSmHeight} - 3px`)}`;
+const switchDisabledOpacity = '0.4';
+const switchColor = primaryColor;
+const switchShadowColor = opacify(0.2, '#00230b');
 
 // Pagination
 // ---
-const pagination-item-size = 32px;
-const pagination-item-size-sm = 24px;
-const pagination-font-family = Arial;
-const pagination-font-weight-active = 500;
-const pagination-item-bg-active = @component-background;
+const paginationItemSize = '32px';
+const paginationItemSizeSm = '24px';
+const paginationFontFamily = 'Arial';
+const paginationFontWeightActive = '500';
+const paginationItemBgActive = componentBackground;
 
 // PageHeader
 // ---
-const page-header-padding-horizontal = 24px;
-const page-header-padding-vertical = 16px;
+const pageHeaderPaddingHorizontal = '24px';
+const pageHeaderPaddingVertical = '16px';
 
 // Breadcrumb
 // ---
-const breadcrumb-baseColor = @textColor-secondary;
-const breadcrumb-last-itemColor = @textColor;
-const breadcrumb-font-size = @font-size-base;
-const breadcrumb-icon-font-size = @font-size-base;
-const breadcrumb-linkColor = @textColor-secondary;
-const breadcrumb-linkColor-hover = @primary-5;
-const breadcrumb-separatorColor = @textColor-secondary;
-const breadcrumb-separator-margin = 0 @padding-xs;
+const breadcrumbBaseColor = textColorSecondary;
+const breadcrumbLastItemColor = textColor;
+const breadcrumbFontSize = fontSizeBase;
+const breadcrumbIconFontSize = fontSizeBase;
+const breadcrumbLinkColor = textColorSecondary;
+const breadcrumbLinkColorHover = primary5;
+const breadcrumbSeparatorColor = textColorSecondary;
+const breadcrumbSeparatorMargin = `0 ${paddingXs}`;
 
 // Slider
 // ---
-const slider-margin = 14px 6px 10px;
-const slider-rail-backgroundColor = @backgroundColor-base;
-const slider-rail-backgroundColor-hover = #e1e1e1;
-const slider-track-backgroundColor = @primary-3;
-const slider-track-backgroundColor-hover = @primary-4;
-const slider-handleColor = @primary-3;
-const slider-handleColor-hover = @primary-4;
-const slider-handleColor-focus = tint(@primaryColor, 20%);
-const slider-handleColor-focus-shadow = fade(@primaryColor, 20%);
-const slider-handleColor-tooltip-open = @primaryColor;
-const slider-dot-borderColor = @borderColor-split;
-const slider-dot-borderColor-active = tint(@primaryColor, 50%);
-const slider-disabledColor = @disabledColor;
-const slider-disabled-backgroundColor = @component-background;
+const sliderMargin = '14px 6px 10px';
+const sliderRailBackgroundColor = backgroundColorBase;
+const sliderRailBackgroundColorHover = '#e1e1e1';
+const sliderTrackBackgroundColor = primary3;
+const sliderTrackBackgroundColorHover = primary4;
+const sliderHandleColor = primary3;
+const sliderHandleColorHover = primary4;
+const sliderHandleColorFocus = tint(primaryColor, 0.2);
+const sliderHandleColorFocusShadow = opacify(0.2, primaryColor);
+const sliderHandleColorTooltipOpen = primaryColor;
+const sliderDotBorderColor = borderColorSplit;
+const sliderDotBorderColorActive = tint(primaryColor, 0.5);
+const sliderDisabledColor = disabledColor;
+const sliderDisabledBackgroundColor = componentBackground;
 
 // Tree
 // ---
-const tree-title-height = 24px;
-const treeChild-padding = 18px;
-const tree-directory-selectedColor = #fff;
-const tree-directory-selected-bg = @primaryColor;
+const treeTitleHeight = '24px';
+const treeChildPadding = '18px';
+const treeDirectorySelectedColor = '#fff';
+const treeDirectorySelectedBg = primaryColor;
 
 // Collapse
 // ---
-const collapse-header-padding = 12px 16px 12px 40px;
-const collapse-header-bg = @backgroundColor-light;
-const collapseContent-padding = @padding-md;
-const collapseContent-bg = @component-background;
+const collapseHeaderPadding = '12px 16px 12px 40px';
+const collapseHeaderBg = backgroundColorLight;
+const collapseContentPadding = paddingMd;
+const collapseContentBg = componentBackground;
 
 // Skeleton
 // ---
-const skeletonColor = #f2f2f2;
+const skeletonColor = '#f2f2f2';
 
 // Transfer
 // ---
-const transfer-disabled-bg = @disabled-bg;
+const transferDisabledBg = disabledBg;
 
 // Message
 // ---
-const message-noticeContent-padding = 10px 16px;
+const messageNoticeContentPadding = '10px 16px';
 
 // Motion
 // ---
-const wave-animation-width = 6px;
+const waveAnimationWidth = '6px';
 
 // Alert
 // ---
-const alert-success-borderColor = ~`colorPalette('@{successColor}', 3) `;
-const alert-success-bgColor = ~`colorPalette('@{successColor}', 1) `;
-const alert-success-iconColor = @successColor;
-const alert-info-borderColor = ~`colorPalette('@{infoColor}', 3) `;
-const alert-info-bgColor = ~`colorPalette('@{infoColor}', 1) `;
-const alert-info-iconColor = @infoColor;
-const alert-warning-borderColor = ~`colorPalette('@{warningColor}', 3) `;
-const alert-warning-bgColor = ~`colorPalette('@{warningColor}', 1) `;
-const alert-warning-iconColor = @warningColor;
-const alert-error-borderColor = ~`colorPalette('@{errorColor}', 3) `;
-const alert-error-bgColor = ~`colorPalette('@{errorColor}', 1) `;
-const alert-error-iconColor = @errorColor;
+const alertSuccessBorderColor = colorPalette(successColor, 3);
+const alertSuccessBgColor = colorPalette(successColor, 1);
+const alertSuccessIconColor = successColor;
+const alertInfoBorderColor = colorPalette(infoColor, 3);
+const alertInfoBgColor = colorPalette(infoColor, 1);
+const alertInfoIconColor = infoColor;
+const alertWarningBorderColor = colorPalette(warningColor, 3);
+const alertWarningBgColor = colorPalette(warningColor, 1);
+const alertWarningIconColor = warningColor;
+const alertErrorBorderColor = colorPalette(errorColor, 3);
+const alertErrorBgColor = colorPalette(errorColor, 1);
+const alertErrorIconColor = errorColor;
 
 // List
 // ---
-const list-header-background = transparent;
-const list-footer-background = transparent;
-const list-empty-text-padding = @padding-md;
-const list-item-padding = @padding-sm 0;
-const list-item-meta-margin-bottom = @padding-md;
-const list-item-meta-avatar-margin-right = @padding-md;
-const list-item-meta-title-margin-bottom = @padding-sm;
+const listHeaderBackground = 'transparent';
+const listFooterBackground = 'transparent';
+const listEmptyTextPadding = paddingMd;
+const listItemPadding = `${paddingSm} 0`;
+const listItemMetaMarginBottom = paddingMd;
+const listItemMetaAvatarMarginRight = paddingMd;
+const listItemMetaTitleMarginBottom = paddingSm;
 
 // Statistic
 // ---
-const statistic-title-font-size = @font-size-base;
-const statisticContent-font-size = 24px;
-const statistic-unit-font-size = 16px;
-const statistic-font-family = Tahoma, 'Helvetica Neue', @font-family;
+const statisticTitleFontSize = fontSizeBase;
+const statisticContentFontSize = '24px';
+const statisticUnitFontSize = '16px';
+const statisticFontFamily = `Tahoma, Helvetica Neue, ${fontFamily}`;
 
 // Drawer
 // ---
-const drawer-header-padding = 16px 24px;
-const drawer-body-padding = 24px;
+const drawerHeaderPadding = '16px 24px';
+const drawerBodyPadding = '24px';
