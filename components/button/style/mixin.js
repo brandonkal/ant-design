@@ -32,45 +32,45 @@ function buttonVariantPrimary(color, background) {
   return css`
   ${buttonColor(color, background, background)};
 
-  text-shadow: btnTextShadow;
-  box-shadow: btnPrimaryShadow;
+  text-shadow: ${btnTextShadow};
+  box-shadow: ${btnPrimaryShadow};
 
   &:hover,
   &:focus {
-    .buttonColor(
-      color, colorPalette('@{background}', 5) `, colorPalette('@{background}', 5) `
-    );
+    ${buttonColor(
+      color, colorPalette(background, 5), colorPalette(background, 5)
+    )};
   }
 
   &:active,
   &.active {
-    .buttonColor(
-      color, colorPalette('@{background}', 7) `, colorPalette('@{background}', 7) `
-    );
+    ${buttonColor(
+      color, colorPalette(background, 7), colorPalette(background, 7)
+    )};
   }
 
-  .buttonDisabled();
+  ${buttonDisabled()};
 `
 }
 
-.buttonVariantOther(color; background; border) {
-  ${buttonColor(color; background; border)};
+function buttonVariantOther(color, background, border) {
+  return css`
+    ${buttonColor(color, background, border)};
 
   &:hover,
   &:focus {
-    .buttonColor(
-      colorPalette('@{btnPrimaryBg}', 5), background, colorPalette('@{btnPrimaryBg}', 5)
-        `
-    );
+    ${buttonColor(
+      colorPalette(btnPrimaryBg, 5), background, colorPalette(btnPrimaryBg, 5)
+    )};
   }
   &:active,
   &.active {
-    .buttonColor(
-      colorPalette('@{btnPrimaryBg}', 7), background, colorPalette('@{btnPrimaryBg}', 7)
-        `
-    );
+    ${buttonColor(
+      colorPalette(btnPrimaryBg, 7), background, colorPalette(btnPrimaryBg, 7)
+    )};
   }
-  .buttonDisabled();
+  ${buttonDisabled()};
+  `
 }
 .buttonVariantDanger(color; background; border) {
   ${buttonColor(color; background; border)};
@@ -268,7 +268,7 @@ const btn = css`
     .buttonSize(btnCircleSizeSm; 0; fontSizeBase; 50%);
   }
 }
-// Horizontal button groups styl
+// Horizontal button groups style
 // --------------------------------------------------
 .btnGroup(btnClassName: btn) {
   .buttonGroupBase(btnClassName);
