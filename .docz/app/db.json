@@ -1,0 +1,40 @@
+{
+  "config": {
+    "title": "Antd",
+    "description": "An enterprise-class UI design language and React-based implementation",
+    "menu": [],
+    "version": "3.16.5",
+    "repository": "https://github.com/ant-design/ant-design",
+    "native": false,
+    "codeSandbox": true,
+    "themeConfig": {},
+    "separator": "-"
+  },
+  "props": [],
+  "entries": [
+    {
+      "key": "first.mdx",
+      "value": {
+        "name": "Test",
+        "id": "35278f549601e5e90e0bc81218c34237",
+        "filepath": "first.mdx",
+        "link": "https://github.com/ant-design/ant-design/edit/master/bk_docz/first.mdx",
+        "slug": "first",
+        "route": "/first",
+        "menu": "",
+        "headings": [
+          {
+            "slug": "button-example",
+            "depth": 1,
+            "value": "Button Example"
+          },
+          {
+            "slug": "basic-usage",
+            "depth": 2,
+            "value": "Basic Usage"
+          }
+        ]
+      }
+    }
+  ]
+}
