@@ -1,17 +1,17 @@
-import { css, injectGlobal } from '@emotion/core';
+import { css } from '@emotion/core';
 
-injectGlobal`
-    @keyframes AntSwitchSmallLoadingCircle {
-        0% {
-            transform: rotate(0deg) scale(0.66667);
-            transform-origin: 50% 50%;
-        }
-
-        100% {
-            transform: rotate(360deg) scale(0.66667);
-            transform-origin: 50% 50%;
-        }
+export const global = css`
+  @keyframes AntSwitchSmallLoadingCircle {
+    0% {
+      transform: rotate(0deg) scale(0.66667);
+      transform-origin: 50% 50%;
     }
+
+    100% {
+      transform: rotate(360deg) scale(0.66667);
+      transform-origin: 50% 50%;
+    }
+  }
 `;
 
 export const antSwitchDisabled = css`

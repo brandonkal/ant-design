@@ -1,47 +1,47 @@
-import { css, injectGlobal } from '@emotion/core';
+import { css } from '@emotion/core';
 
-injectGlobal`
-    @keyframes NotificationFadeIn {
-        0% {
-            left: 384px;
-            opacity: 0;
-        }
-
-        100% {
-            left: 0;
-            opacity: 1;
-        }
+export const global = css`
+  @keyframes NotificationFadeIn {
+    0% {
+      left: 384px;
+      opacity: 0;
     }
 
-    @keyframes NotificationLeftFadeIn {
-        0% {
-            right: 384px;
-            opacity: 0;
-        }
+    100% {
+      left: 0;
+      opacity: 1;
+    }
+  }
 
-        100% {
-            right: 0;
-            opacity: 1;
-        }
+  @keyframes NotificationLeftFadeIn {
+    0% {
+      right: 384px;
+      opacity: 0;
     }
 
-    @keyframes NotificationFadeOut {
-        0% {
-            max-height: 150px;
-            margin-bottom: 16px;
-            padding-top: 16px 24px;
-            padding-bottom: 16px 24px;
-            opacity: 1;
-        }
-
-        100% {
-            max-height: 0;
-            margin-bottom: 0;
-            padding-top: 0;
-            padding-bottom: 0;
-            opacity: 0;
-        }
+    100% {
+      right: 0;
+      opacity: 1;
     }
+  }
+
+  @keyframes NotificationFadeOut {
+    0% {
+      max-height: 150px;
+      margin-bottom: 16px;
+      padding-top: 16px 24px;
+      padding-bottom: 16px 24px;
+      opacity: 1;
+    }
+
+    100% {
+      max-height: 0;
+      margin-bottom: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+      opacity: 0;
+    }
+  }
 `;
 
 export const antNotification = css`

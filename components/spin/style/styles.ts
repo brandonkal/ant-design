@@ -1,17 +1,17 @@
-import { css, injectGlobal } from '@emotion/core';
+import { css } from '@emotion/core';
 
-injectGlobal`
-    @keyframes antSpinMove {
-        to {
-            opacity: 1;
-        }
+export const global = css`
+  @keyframes antSpinMove {
+    to {
+      opacity: 1;
     }
+  }
 
-    @keyframes antRotate {
-        to {
-            transform: rotate(405deg);
-        }
+  @keyframes antRotate {
+    to {
+      transform: rotate(405deg);
     }
+  }
 `;
 
 export const antSpin = css`

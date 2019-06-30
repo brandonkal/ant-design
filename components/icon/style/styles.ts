@@ -1,3 +1,3 @@
 import { injectGlobal } from '@emotion/core';
 
-injectGlobal``;
+export const global = css``;

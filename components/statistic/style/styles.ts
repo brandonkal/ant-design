@@ -1,6 +1,6 @@
-import { css, injectGlobal } from '@emotion/core';
+import { css } from '@emotion/core';
 
-injectGlobal``;
+export const global = css``;
 
 export const antStatistic = css`
   box-sizing: border-box;

@@ -1,65 +1,65 @@
-import { css, injectGlobal } from '@emotion/core';
+import { css } from '@emotion/core';
 
-injectGlobal`
-    input[type="radio"][disabled],
-    input[type="checkbox"][disabled] {
-        cursor: not-allowed;
+export const global = css`
+  input[type='radio'][disabled],
+  input[type='checkbox'][disabled] {
+    cursor: not-allowed;
+  }
+
+  form input[type='radio'],
+  form input[type='checkbox'] {
+    width: 14px;
+    height: 14px;
+  }
+
+  @keyframes antShowHelpIn {
+    0% {
+      transform: translateY(-5px);
+      opacity: 0;
     }
 
-    form input[type="radio"],
-    form input[type="checkbox"] {
-        width: 14px;
-        height: 14px;
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes antShowHelpOut {
+    to {
+      transform: translateY(-5px);
+      opacity: 0;
+    }
+  }
+
+  @keyframes diffZoomIn1 {
+    0% {
+      transform: scale(0);
     }
 
-    @keyframes antShowHelpIn {
-        0% {
-            transform: translateY(-5px);
-            opacity: 0;
-        }
+    100% {
+      transform: scale(1);
+    }
+  }
 
-        100% {
-            transform: translateY(0);
-            opacity: 1;
-        }
+  @keyframes diffZoomIn2 {
+    0% {
+      transform: scale(0);
     }
 
-    @keyframes antShowHelpOut {
-        to {
-            transform: translateY(-5px);
-            opacity: 0;
-        }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes diffZoomIn3 {
+    0% {
+      transform: scale(0);
     }
 
-    @keyframes diffZoomIn1 {
-        0% {
-            transform: scale(0);
-        }
-
-        100% {
-            transform: scale(1);
-        }
+    100% {
+      transform: scale(1);
     }
-
-    @keyframes diffZoomIn2 {
-        0% {
-            transform: scale(0);
-        }
-
-        100% {
-            transform: scale(1);
-        }
-    }
-
-    @keyframes diffZoomIn3 {
-        0% {
-            transform: scale(0);
-        }
-
-        100% {
-            transform: scale(1);
-        }
-    }
+  }
 `;
 
 export const antFormItem = css`

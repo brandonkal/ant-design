@@ -1,17 +1,17 @@
-import { css, injectGlobal } from '@emotion/core';
+import { css } from '@emotion/core';
 
-injectGlobal`
-    @keyframes antCheckboxEffect {
-        0% {
-            transform: scale(1);
-            opacity: 0.5;
-        }
-
-        100% {
-            transform: scale(1.6);
-            opacity: 0;
-        }
+export const global = css`
+  @keyframes antCheckboxEffect {
+    0% {
+      transform: scale(1);
+      opacity: 0.5;
     }
+
+    100% {
+      transform: scale(1.6);
+      opacity: 0;
+    }
+  }
 `;
 
 export const antTreeChildTree = css`

@@ -1,6 +1,6 @@
-import { css, injectGlobal } from '@emotion/core';
+import { css } from '@emotion/core';
 
-injectGlobal``;
+export const global = css``;
 
 export const antTableBordered = css`
   & .${antTableTitle} + .ant-table-content,

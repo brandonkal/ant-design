@@ -1,6 +1,6 @@
-import { css, injectGlobal } from '@emotion/core';
+import { css } from '@emotion/core';
 
-injectGlobal``;
+export const global = css``;
 
 export const antMenuInline = css`
   border-right: 1px solid #e8e8e8;

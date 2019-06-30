@@ -1,19 +1,19 @@
-import { css, injectGlobal } from '@emotion/core';
+import { css } from '@emotion/core';
 
-injectGlobal`
-    @keyframes MessageMoveOut {
-        0% {
-            max-height: 150px;
-            padding: 8px;
-            opacity: 1;
-        }
-
-        100% {
-            max-height: 0;
-            padding: 0;
-            opacity: 0;
-        }
+export const global = css`
+  @keyframes MessageMoveOut {
+    0% {
+      max-height: 150px;
+      padding: 8px;
+      opacity: 1;
     }
+
+    100% {
+      max-height: 0;
+      padding: 0;
+      opacity: 0;
+    }
+  }
 `;
 
 export const antMessage = css`

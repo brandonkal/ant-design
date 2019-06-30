@@ -1,15 +1,15 @@
-import { css, injectGlobal } from '@emotion/core';
+import { css } from '@emotion/core';
 
-injectGlobal`
-    @keyframes ant-skeleton-loading {
-        0% {
-            background-position: 100% 50%;
-        }
-
-        100% {
-            background-position: 0 50%;
-        }
+export const global = css`
+  @keyframes ant-skeleton-loading {
+    0% {
+      background-position: 100% 50%;
     }
+
+    100% {
+      background-position: 0 50%;
+    }
+  }
 `;
 
 export const antSkeletonContent = css`

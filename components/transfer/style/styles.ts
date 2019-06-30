@@ -1,27 +1,27 @@
-import { css, injectGlobal } from '@emotion/core';
+import { css } from '@emotion/core';
 
-injectGlobal`
-    @keyframes antCheckboxEffect {
-        0% {
-            transform: scale(1);
-            opacity: 0.5;
-        }
-
-        100% {
-            transform: scale(1.6);
-            opacity: 0;
-        }
+export const global = css`
+  @keyframes antCheckboxEffect {
+    0% {
+      transform: scale(1);
+      opacity: 0.5;
     }
 
-    @keyframes transferHighlightIn {
-        0% {
-            background: #bae7ff;
-        }
-
-        100% {
-            background: transparent;
-        }
+    100% {
+      transform: scale(1.6);
+      opacity: 0;
     }
+  }
+
+  @keyframes transferHighlightIn {
+    0% {
+      background: #bae7ff;
+    }
+
+    100% {
+      background: transparent;
+    }
+  }
 `;
 
 export const antTransfer = css`
